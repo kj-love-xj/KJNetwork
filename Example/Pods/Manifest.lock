@@ -1,0 +1,16 @@
+PODS:
+  - KJNetwork (0.1.0)
+
+DEPENDENCIES:
+  - KJNetwork (from `../`)
+
+EXTERNAL SOURCES:
+  KJNetwork:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  KJNetwork: 87668079b86208f7c0a4ec3dc2a46ffa9ba92af6
+
+PODFILE CHECKSUM: 848ad18c51ae319ad60152c77f8dfa14b3218901
+
+COCOAPODS: 1.9.2
