@@ -8,6 +8,15 @@
 
 #import "KJNetworkGlobalConfigs.h"
 
+@interface KJNetworkGlobalConfigs ()
+
+/// 全局参数配置
+@property (nonatomic, strong, readwrite) NSMutableDictionary *kjParams;
+
+/// 全局Header配置
+@property (nonatomic, strong, readwrite) NSMutableDictionary *kjHeader;
+
+@end
 
 @implementation KJNetworkGlobalConfigs
 
