@@ -14,7 +14,7 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - KJNetwork (0.0.3):
+  - KJNetwork (0.0.4):
     - AFNetworking (~> 4.0)
     - MJExtension
   - MJExtension (3.2.2)
@@ -33,7 +33,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  KJNetwork: f108bae56efedd778cb8c2df5f241981c1452b50
+  KJNetwork: a67838b36dcc1aa6287732e2481ff18771859160
   MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
 
 PODFILE CHECKSUM: 1a62d7ed9be24783bd8c4eb21b28f5d017fbb870

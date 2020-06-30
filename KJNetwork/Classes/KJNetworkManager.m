@@ -307,7 +307,7 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
         [self.kj_Header removeObjectsForKeys:[KJNetworkGlobalConfigs defaultConfigs].kjHeader.allKeys];
     }
     // 打印
-    NSLog(@"STAET\n\n----------\n\nHOST:%@\nURL:%@\nparams:%@\nglobal(params):%@\nglobal(header):%@\nresponse:%@\n\n----------\n\nEND",
+    NSLog(@"\n\nSTART\n\n----------\n\nHOST:%@\nURL:%@\nparams:%@\nglobal(params):%@\nglobal(header):%@\nresponse:%@\n\n----------\n\nEND\n",
           self.kj_BaseURL,
           self.kj_URL,
           self.kj_Params.mj_JSONString,
