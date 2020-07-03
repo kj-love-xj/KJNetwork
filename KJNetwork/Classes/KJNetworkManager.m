@@ -336,6 +336,9 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
 /// @param data 网络请求下来的data中的数据
 /// @param names 外部指定的key路径
 - (nullable id)findData:(NSDictionary *)data names:(NSArray<NSString *> *)names {
+    if (names.count == 1 && [names.firstObject isEqualToString:@"KJORIGINDATA"]) {
+        return data;
+    }
     NSDictionary * origin = [NSDictionary dictionaryWithDictionary:data];
     if ([data isKindOfClass:NSDictionary.class]) {
         for (int i = 0; i < names.count; i ++) {
@@ -420,7 +423,7 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
 /// 解析结果对象
 - (KJNetworkManager * (^)(NSString *value))kjAnalyzer {
     return ^id(NSString *analyzer) {
-        [self.kj_Analyzer setValue:analyzer forKey:@"data"];
+        [self.kj_Analyzer setValue:analyzer forKey:@"KJORIGINDATA"];
         return self;
     };
 }
