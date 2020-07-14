@@ -50,19 +50,26 @@
 /// @param handle 请求结束回调
 + (instancetype)kjRequest:(nonnull void(^)(KJNetworkManager *manager))request
                  complete: (nullable KJNetworkRequestHandle)handle {
+    KJNetworkManager *manager = [self kjRequest:request];
+    [manager sendRequest:handle];
+    return manager;
+}
+
+/// 初始化网络请求对象，不主动发送请求，需要主动调用sendRequest才会发送请求
+/// @param request 设置
++ (instancetype)kjRequest:(nonnull void(^)(KJNetworkManager *manager))request {
     KJNetworkManager *manager = [[KJNetworkManager alloc] init];
     manager.kj_Method = GET; // 默认GET
     manager.kj_ObjectKey = [KJNetworkGlobalConfigs defaultConfigs].kjObjectKey;
     manager.kj_ResponseSerializer = [KJNetworkGlobalConfigs defaultConfigs].kjResponseSerializer;
     manager.kj_RequestSerializer = [KJNetworkGlobalConfigs defaultConfigs].kjRequestSerializer;
-    manager.completeBlock = handle;
     request(manager);
-    [manager handleRequest];
     return manager;
 }
 
-/// 处理网络请求
-- (void)handleRequest {
+/// 发送请求
+- (void)sendRequest:(nullable KJNetworkRequestHandle)handle{
+    self.completeBlock = handle;
     if (self.kj_Data.count > 0) {
         // 有文件需要上传
         [self uploadRequest];
@@ -90,6 +97,7 @@
         }
     }
 }
+
 
 #pragma mark - request
 
@@ -236,6 +244,7 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
     KJBaseModel *baseModel = [[KJBaseModel alloc] init];
     baseModel.code = error.code;
     baseModel.message = error.localizedDescription;
+    baseModel.requestUrl = self.kj_URL;
     self.completeBlock(baseModel);
 }
 
@@ -294,6 +303,7 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
             baseModel.data = @[data];
         }
     }
+    baseModel.requestUrl = self.kj_URL;
     // 回调
     self.completeBlock(baseModel);
     

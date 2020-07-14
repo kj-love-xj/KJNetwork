@@ -24,6 +24,13 @@ typedef void(^KJNetworkRequestHandle)(KJBaseModel *kjModel);
 + (instancetype)kjRequest:(nonnull void(^)(KJNetworkManager *manager))request
                  complete: (nullable KJNetworkRequestHandle)handle;
 
+/// 初始化网络请求对象，不主动发送请求，需要主动调用sendRequest才会发送请求
+/// @param request 设置
++ (instancetype)kjRequest:(nonnull void(^)(KJNetworkManager *manager))request;
+
+/// 发送请求
+- (void)sendRequest:(nullable KJNetworkRequestHandle)handle;
+
 
 /// HOST 如果不设置该属性，会从全局属性里获取
 - (KJNetworkManager * (^)(NSString *value))kjBaseURL;
@@ -142,7 +149,6 @@ typedef void(^KJNetworkRequestHandle)(KJBaseModel *kjModel);
  当然啦，也有返下来的数据对移动端来说没什么用，不需要解析出来，就直接不设置这个key即可
  
  */
-
 
 @end
 

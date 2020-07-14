@@ -3,7 +3,9 @@ use_frameworks!
 platform :ios, '9.0'
 
 target 'KJNetwork_Example' do
-  pod 'KJNetwork', :path => '../'
+#  pod 'KJNetwork', :path => '../'
+pod 'AFNetworking'
+pod 'MJExtension'
 
   target 'KJNetwork_Tests' do
     inherit! :search_paths

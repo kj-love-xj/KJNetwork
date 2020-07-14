@@ -14,28 +14,21 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - KJNetwork (0.0.5):
-    - AFNetworking (~> 4.0)
-    - MJExtension
   - MJExtension (3.2.2)
 
 DEPENDENCIES:
-  - KJNetwork (from `../`)
+  - AFNetworking
+  - MJExtension
 
 SPEC REPOS:
   trunk:
     - AFNetworking
     - MJExtension
 
-EXTERNAL SOURCES:
-  KJNetwork:
-    :path: "../"
-
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  KJNetwork: e8b1e4dbfd4d10274b2bd034d583067dfc871386
   MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
 
-PODFILE CHECKSUM: 74ec58918149a9d689460ee2035211420ac842dc
+PODFILE CHECKSUM: bfe63ae942213ca01cdbe8900bf8c0a4cf23f95c
 
 COCOAPODS: 1.9.3

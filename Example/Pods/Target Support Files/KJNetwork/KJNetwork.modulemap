@@ -1,6 +1,0 @@
-framework module KJNetwork {
-  umbrella header "KJNetwork-umbrella.h"
-
-  export *
-  module * { export * }
-}

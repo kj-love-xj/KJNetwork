@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) id responseObject;
 /// 是否请求成功，如果这里的实现不够，可以继承后重写get方法
 @property (nonatomic, assign, readonly) BOOL succeed;
+/// 当前请求的网络地址
+@property (nonatomic, copy) NSString *requestUrl;
 
 @end
 

@@ -12,6 +12,7 @@
 
 #import "KJNetworkManager.h"
 #import "KJNetworkGlobalConfigs.h"
+#import "KJNetworkGroupManager.h"
 
 #endif /* KJNetwork_h */
 
