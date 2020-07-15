@@ -245,6 +245,7 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
     baseModel.code = error.code;
     baseModel.message = error.localizedDescription;
     baseModel.requestUrl = self.kj_URL;
+    baseModel.data = @[];
     self.completeBlock(baseModel);
 }
 
@@ -255,60 +256,59 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
     // 下面开始处理服务端返下来的结果
     KJBaseModel *baseModel = [KJBaseModel mj_objectWithKeyValues:responseObject];
     baseModel.responseObject = responseObject;
+    baseModel.requestUrl = self.kj_URL;
     id data = responseObject[self.kj_ObjectKey];
+    BOOL isArray = [data isKindOfClass:NSArray.class] && [(NSArray *)data count] > 0;
+    BOOL isDictionary = [data isKindOfClass:NSDictionary.class] && [(NSDictionary *)data count] > 0;
     // 解析
-    if (self.kj_Analyzer.count > 0) {
-        NSArray *keys = self.kj_Analyzer.allKeys;
-        if ([data isKindOfClass:NSDictionary.class]) {
-            NSMutableDictionary *result = [NSMutableDictionary dictionaryWithCapacity:0];
-            for (NSString *key in keys) {
-                // 把解析完后的key名 和 需要解析的数据在data中的位置name 区分开，分隔符是"->"
-                NSArray *names = [key componentsSeparatedByString:@"->"];
-                NSString *laterName = names.lastObject;
-                // 找到对应的数据
-                id origin = [self findData:data names:[names.firstObject componentsSeparatedByString:@"."]];
-                // 解析成对应的类型
-                id parsing_data = [self data:origin className:self.kj_Analyzer[key]];
-                if (parsing_data != nil) {
-                    [result setObject:parsing_data forKey:laterName];
+    if (data != nil && (isArray || isDictionary)) {
+        if (self.kj_Analyzer.count > 0) {
+            NSArray *keys = self.kj_Analyzer.allKeys;
+            if (isDictionary) {
+                NSMutableDictionary *result = [NSMutableDictionary dictionaryWithCapacity:0];
+                for (NSString *key in keys) {
+                    // 把解析完后的key名 和 需要解析的数据在data中的位置name 区分开，分隔符是"->"
+                    NSArray *names = [key componentsSeparatedByString:@"->"];
+                    NSString *laterName = names.lastObject;
+                    // 找到对应的数据
+                    id origin = [self findData:data names:[names.firstObject componentsSeparatedByString:@"."]];
+                    // 解析成对应的类型
+                    id parsing_data = [self data:origin className:self.kj_Analyzer[key]];
+                    if (parsing_data != nil) {
+                        [result setObject:parsing_data forKey:laterName];
+                    }
                 }
-            }
-            if (result.count == 1) {
-                // 当解析完后就只有一个数据，那么，baseModel中的data就是这个数据
-                id object = result.allValues.firstObject;
+                if (result.count == 1) {
+                    // 当解析完后就只有一个数据，那么，baseModel中的data就是这个数据
+                    id object = result.allValues.firstObject;
+                    if ([object isKindOfClass:NSArray.class]) {
+                        baseModel.data = (NSArray *)object;
+                    } else {
+                        baseModel.data = @[object];
+                    }
+                } else {
+                    baseModel.data = @[result];
+                }
+            } else  {
+                // 在这种情况下，理论上只有一个解析对象
+                NSString *name = self.kj_Analyzer[keys.firstObject];
+                id object = [self data:data className:name];
                 if ([object isKindOfClass:NSArray.class]) {
                     baseModel.data = (NSArray *)object;
                 } else {
                     baseModel.data = @[object];
                 }
-            } else {
-                baseModel.data = @[result];
-            }
-        } else if ([data isKindOfClass:NSArray.class]) {
-            // 在这种情况下，理论上只有一个解析对象
-            NSString *name = self.kj_Analyzer[keys.firstObject];
-            id object = [self data:data className:name];
-            if ([object isKindOfClass:NSArray.class]) {
-                baseModel.data = (NSArray *)object;
-            } else {
-                baseModel.data = @[object];
             }
         } else {
-            baseModel.data = @[];
-            NSLog(@"KJNetworkManager：数据结构有问题，需要和服务端沟通处理");
+            if ([data isKindOfClass:NSArray.class]) {
+                baseModel.data = (NSArray *)data;
+            } else {
+                baseModel.data = @[data];
+            }
         }
     } else {
-        if ([data isKindOfClass:NSArray.class]) {
-            baseModel.data = (NSArray *)data;
-        } else {
-            if (data != nil) {
-                baseModel.data = @[data];
-            } else {
-                baseModel.data = @[];
-            }
-        }
+        baseModel.data = @[];
     }
-    baseModel.requestUrl = self.kj_URL;
     // 回调
     self.completeBlock(baseModel);
     
