@@ -257,11 +257,12 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
     KJBaseModel *baseModel = [KJBaseModel mj_objectWithKeyValues:responseObject];
     baseModel.responseObject = responseObject;
     baseModel.requestUrl = self.kj_URL;
+    // 取出需要解析的数据
     id data = responseObject[self.kj_ObjectKey];
     BOOL isArray = [data isKindOfClass:NSArray.class] && [(NSArray *)data count] > 0;
     BOOL isDictionary = [data isKindOfClass:NSDictionary.class] && [(NSDictionary *)data count] > 0;
     // 解析
-    if (data != nil && (isArray || isDictionary)) {
+    if (isArray || isDictionary) {
         if (self.kj_Analyzer.count > 0) {
             NSArray *keys = self.kj_Analyzer.allKeys;
             if (isDictionary) {
