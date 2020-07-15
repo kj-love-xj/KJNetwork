@@ -13,7 +13,7 @@
 /// 多个网络请求同时发送
 /// @param request 网络请求组
 /// @param complete 请求结果集
-+ (instancetype)kjRequest:(NSArray<KJNetworkManager *> *(^)())request
++ (instancetype)kjRequest:(NSArray<KJNetworkManager *> *(^)(void))request
                  complete:(nullable KJNetworkGroupRequestHandle)complete {
     KJNetworkGroupManager *manager = [KJNetworkGroupManager new];
     NSArray *requestObjectArray = request();

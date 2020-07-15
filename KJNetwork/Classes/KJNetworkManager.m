@@ -294,13 +294,18 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
                 baseModel.data = @[object];
             }
         } else {
+            baseModel.data = @[];
             NSLog(@"KJNetworkManager：数据结构有问题，需要和服务端沟通处理");
         }
     } else {
         if ([data isKindOfClass:NSArray.class]) {
             baseModel.data = (NSArray *)data;
         } else {
-            baseModel.data = @[data];
+            if (data != nil) {
+                baseModel.data = @[data];
+            } else {
+                baseModel.data = @[];
+            }
         }
     }
     baseModel.requestUrl = self.kj_URL;
