@@ -360,7 +360,9 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
         for (int i = 0; i < names.count; i ++) {
             NSDictionary *next = origin[names[i]];
             if (i == names.count - 1) {
-                return next;
+                if (next != nil) { return next;}
+                if (origin != nil) { return origin;}
+                return data;
             } else {
                 origin = next;
             }
