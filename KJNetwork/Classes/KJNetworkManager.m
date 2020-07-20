@@ -7,8 +7,8 @@
 //
 
 #import "KJNetworkManager.h"
-#import <AFNetworking/AFNetworking.h>
-#import <MJExtension/MJExtension.h>
+#import "AFNetworking/AFNetworking.h"
+#import "MJExtension/MJExtension.h"
 #import "KJNetworkGlobalConfigs.h"
 
 @interface KJNetworkManager ()
@@ -308,7 +308,11 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
             }
         }
     } else {
-        baseModel.data = @[];
+        if (data != nil) {
+            baseModel.data = @[data];
+        } else {
+            baseModel.data = @[];
+        }
     }
     // 回调
     self.completeBlock(baseModel);
