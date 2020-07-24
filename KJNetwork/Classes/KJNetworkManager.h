@@ -53,6 +53,8 @@ typedef void(^KJNetworkRequestHandle)(KJBaseModel *kjModel);
 - (KJNetworkManager * (^)(NSString *value))kjAnalyzer;
 /// 设置结果集在返回数据(responseObject)中的Key，如果业务方属性名有不同，需要设置，默认 data
 - (KJNetworkManager * (^)(NSString *value))kjObjectKey;
+///  外界可以设置基于KJBaseModel的子类来设置BaseModel， 默认 KJBaseModel
+- (KJNetworkManager * (^)(NSString *value))kjBaseClassName;
 
 /// 多个文件
 - (KJNetworkManager * (^)(NSArray<KJUploadModel *> *value))kjMoreFile;

@@ -29,6 +29,7 @@ static KJNetworkGlobalConfigs *_configs = nil;
         _configs.kjResponseSerializer = JSON;
         _configs.kjRequestSerializer = JSON;
         _configs.kjObjectKey = @"data";
+        _configs.kjBaseModelName = @"KJBaseModel";
     });
     return _configs;
 }

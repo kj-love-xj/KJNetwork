@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 设置结果集在返回数据(responseObject)中的Key，如果业务方属性名有不同，需要设置，默认 data
 @property (nonatomic, copy) NSString *kjObjectKey;
 
+/// 设置解析的BaseModel，必须是KJBaseModel的子类， 默认KJBaseModel
+@property (nonatomic, copy) NSString *kjBaseModelName;
+
 @end
 
 NS_ASSUME_NONNULL_END

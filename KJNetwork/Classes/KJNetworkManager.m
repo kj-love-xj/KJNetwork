@@ -37,6 +37,8 @@
 @property (nonatomic, strong) NSURLSessionDataTask *task;
 /// 需要解析的结果集Key
 @property (nonatomic, copy) NSString *kj_ObjectKey;
+/// 设置BaseModel
+@property (nonatomic, copy) NSString *kj_baseModelClassName;
 
 
 @end
@@ -63,6 +65,7 @@
     manager.kj_ObjectKey = [KJNetworkGlobalConfigs defaultConfigs].kjObjectKey;
     manager.kj_ResponseSerializer = [KJNetworkGlobalConfigs defaultConfigs].kjResponseSerializer;
     manager.kj_RequestSerializer = [KJNetworkGlobalConfigs defaultConfigs].kjRequestSerializer;
+    manager.kj_baseModelClassName = [KJNetworkGlobalConfigs defaultConfigs].kjBaseModelName;
     request(manager);
     return manager;
 }
@@ -241,7 +244,7 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
 
 /// 失败的处理
 - (void)handleRequestFailure:(NSError *)error {
-    KJBaseModel *baseModel = [[KJBaseModel alloc] init];
+    KJBaseModel *baseModel = [[NSClassFromString(self.kj_baseModelClassName) alloc] init];
     baseModel.code = error.code;
     baseModel.message = error.localizedDescription;
     baseModel.requestUrl = self.kj_URL;
@@ -254,7 +257,7 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
     // 当外部不需要这些数据来做业务处理，那么这里就可以不做解析流程
     if (self.completeBlock == nil) { return; }
     // 下面开始处理服务端返下来的结果
-    KJBaseModel *baseModel = [KJBaseModel mj_objectWithKeyValues:responseObject];
+    KJBaseModel *baseModel = [NSClassFromString(self.kj_baseModelClassName) mj_objectWithKeyValues:responseObject];
     baseModel.responseObject = responseObject;
     baseModel.requestUrl = self.kj_URL;
     // 取出需要解析的数据
@@ -454,6 +457,16 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
 - (KJNetworkManager * (^)(NSString *value))kjObjectKey {
     return ^id(NSString *key) {
         self.kj_ObjectKey = key;
+        return self;
+    };
+}
+
+///  外界可以设置基于KJBaseModel的子类来设置BaseModel
+- (KJNetworkManager * (^)(NSString *value))kjBaseClassName {
+    return ^id(NSString *name) {
+        if ([NSClassFromString(name) isKindOfClass:KJBaseModel.class]) {
+            self.kj_baseModelClassName = name;
+        }
         return self;
     };
 }

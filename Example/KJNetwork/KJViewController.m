@@ -22,6 +22,7 @@
     [KJNetworkGlobalConfigs defaultConfigs].kjHost = @"http://68.79.40.116:20204/xueshuo/app";
     [[KJNetworkGlobalConfigs defaultConfigs].kjHeader setValue:@"application/json" forKey:@"Content-Type"];
     [[KJNetworkGlobalConfigs defaultConfigs].kjHeader setValue:@"32aacfe601b642d881702007c6e512a4" forKey:@"Authorization"];
+    [KJNetworkGlobalConfigs defaultConfigs].kjBaseModelName = @"KJCustomBaseModel";
     
     [KJNetworkGroupManager kjRequest:^NSArray<KJNetworkManager *> * _Nonnull{
         return @[
