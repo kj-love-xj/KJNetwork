@@ -311,10 +311,12 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
             }
         }
     } else {
-        if (data != nil) {
-            baseModel.data = @[data];
-        } else {
+        if (data == nil
+            || [data isKindOfClass:NSDictionary.class] // 空字典
+            || [data isKindOfClass:NSArray.class]) { // 空数组
             baseModel.data = @[];
+        } else {
+            baseModel.data = @[data];
         }
     }
     // 回调
