@@ -109,7 +109,7 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
 
 /// 设置 AFHTTPSessionManager
 - (AFHTTPSessionManager *)httpManager {
-    AFHTTPSessionManager *http = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *http = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:self.kj_BaseURL]];
     
     // request
     AFHTTPRequestSerializer *requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -127,13 +127,21 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
     NSSet *set = [[NSSet alloc]initWithObjects:@"application/json",@"text/json",@"text/javascript",@"text/plain",@"text/html", nil];
     responseSerializer.acceptableContentTypes = set;
     http.responseSerializer = responseSerializer;
-    
     return http;
+}
+
+
+- (NSString *)handleURL {
+    NSString *url = self.kj_URL;
+    if ([url hasPrefix:@"/"]) {
+        url = [url substringFromIndex:1];
+    }
+    return url;
 }
 
 /// GET
 - (void)getRequest {
-    self.task = [[self httpManager] GET:[self.kj_BaseURL stringByAppendingPathComponent:self.kj_URL]
+    self.task = [[self httpManager] GET:[self handleURL]
                              parameters:self.kj_Params
                                 headers:self.kj_Header
                                progress:nil
@@ -149,7 +157,7 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
 
 /// POST
 - (void)postRequest {
-    self.task = [[self httpManager] POST:[self.kj_BaseURL stringByAppendingPathComponent:self.kj_URL]
+    self.task = [[self httpManager] POST:[self handleURL]
                               parameters:self.kj_Params
                                  headers:self.kj_Header
                                 progress:nil
@@ -165,7 +173,7 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
 
 /// PUT
 - (void)putRequest {
-    self.task = [[self httpManager] PUT:[self.kj_BaseURL stringByAppendingPathComponent:self.kj_URL]
+    self.task = [[self httpManager] PUT:[self handleURL]
                              parameters:self.kj_Params
                                 headers:self.kj_Header
                                 success:^(NSURLSessionDataTask * _Nonnull task,
@@ -180,7 +188,7 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
 
 /// DELETE
 - (void)deleteRequest {
-    self.task = [[self httpManager] DELETE:[self.kj_BaseURL stringByAppendingPathComponent:self.kj_URL]
+    self.task = [[self httpManager] DELETE:[self handleURL]
                                 parameters:self.kj_Params
                                    headers:self.kj_Header
                                    success:^(NSURLSessionDataTask * _Nonnull task,
@@ -195,7 +203,7 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
 
 /// UPLOAD
 - (void)uploadRequest {
-    self.task = [[self httpManager] POST:[self.kj_BaseURL stringByAppendingPathComponent:self.kj_URL]
+    self.task = [[self httpManager] POST:[self handleURL]
                               parameters:self.kj_Params
                                  headers:self.kj_Header
                constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {

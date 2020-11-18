@@ -4,7 +4,7 @@
 //
 //  Created by 黄克瑾 on 2020/7/14.
 //  Copyright © 2020 jin. All rights reserved.
-//
+//  多个Api一起请求，返回一个结果集
 
 #import <Foundation/Foundation.h>
 #import "KJNetworkManager.h"
@@ -18,8 +18,8 @@ typedef void(^KJNetworkGroupRequestHandle)(NSDictionary<NSString *, KJBaseModel 
 /// 多个网络请求同时发送
 /// @param request 网络请求组
 /// @param complete 请求结果集
-+ (instancetype)kjRequest:(NSArray<KJNetworkManager *> *(^)(void))request
-                 complete:(nullable KJNetworkGroupRequestHandle)complete;
++ (void)kjRequest:(NSArray<KJNetworkManager *> *(^)(void))request
+         complete:(nullable KJNetworkGroupRequestHandle)complete;
 
 @end
 
