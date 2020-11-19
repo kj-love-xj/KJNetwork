@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KJNetwork'
-  s.version          = '0.0.14'
+  s.version          = '0.0.16'
   s.summary          = 'KJNetwork'
 
 # This description is used to generate tags and improve search results.

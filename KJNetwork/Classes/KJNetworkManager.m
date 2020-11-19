@@ -535,4 +535,8 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
     return _kj_Data;
 }
 
+- (NSString *)kjRequestURL {
+    return self.kj_URL;
+}
+
 @end

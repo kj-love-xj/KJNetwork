@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NSDictionary * _Nullable (^KJNetworkRelevanceParameterHandle)(NSDictionary<NSString *, KJBaseModel *> *kjResult, NSArray<KJBaseModel *> *kjResultArray, KJNetworkManager *nextRequet);
+typedef NSDictionary * _Nullable (^KJNetworkRelevanceParameterHandle)(NSDictionary<NSString *, KJBaseModel *> *kjResult, NSArray<KJBaseModel *> *kjResultArray, KJNetworkManager *nextRequest);
 
 typedef void(^KJNetworkRelevanceRequestHandle)(NSDictionary<NSString *, KJBaseModel *> *kjResult, NSArray<KJBaseModel *> *kjResultArray);
 
