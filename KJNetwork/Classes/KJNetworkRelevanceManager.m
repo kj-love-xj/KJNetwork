@@ -33,7 +33,7 @@
         for (int i = 0; i < requestObjectArray.count; i ++) {
             KJNetworkManager *network = requestObjectArray[i];
             [network sendRequest:^(KJBaseModel * _Nonnull kjModel) {
-                [dict setValue:kjModel forKey:kjModel.requestUrl];
+                [dict setValue:kjModel forKey:kjModel.groupResponseKey];
                 [data addObject:kjModel];
                 if (i < requestObjectArray.count - 1) {
                     KJNetworkManager *next = requestObjectArray[i + 1];

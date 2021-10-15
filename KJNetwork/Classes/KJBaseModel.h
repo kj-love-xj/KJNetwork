@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) BOOL succeed;
 /// 当前请求的网络地址
 @property (nonatomic, copy) NSString *requestUrl;
+/// 组合或关联请求结果对应的key
+@property (nonatomic, copy) NSString *groupResponseKey;
 
 @end
 

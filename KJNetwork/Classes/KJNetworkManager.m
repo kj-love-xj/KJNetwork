@@ -39,7 +39,8 @@
 @property (nonatomic, copy) NSString *kj_ObjectKey;
 /// 设置BaseModel
 @property (nonatomic, copy) NSString *kj_baseModelClassName;
-
+/// 组合请求和关联请求对应的结果集的key
+@property (nonatomic, copy) NSString *kjGoupResponseKey;
 
 @end
 
@@ -268,6 +269,7 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
     KJBaseModel *baseModel = [NSClassFromString(self.kj_baseModelClassName) mj_objectWithKeyValues:responseObject];
     baseModel.responseObject = responseObject;
     baseModel.requestUrl = self.kj_URL;
+    baseModel.groupResponseKey = self.kjGoupResponseKey;
     // 取出需要解析的数据
     id data = responseObject[self.kj_ObjectKey];
     BOOL isArray = [data isKindOfClass:NSArray.class] && [(NSArray *)data count] > 0;
@@ -496,6 +498,16 @@ static NSTimeInterval const REQUEST_TIMEOUT = 60.0;
         return self;
     };
 }
+
+///  仅限组合请求或关联请求使用
+- (KJNetworkManager * (^)(NSString *value))kjCustomGoupKey {
+    return ^id(NSString *key) {
+        self.kjGoupResponseKey = key;
+        return self;
+    };
+}
+
+
 
 
 #pragma mark - lazzy

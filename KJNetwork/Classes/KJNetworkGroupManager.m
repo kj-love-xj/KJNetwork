@@ -29,7 +29,7 @@
         dispatch_group_enter(group);
         dispatch_group_async(group, dispatch_get_global_queue(0, 0), ^{
             [network sendRequest:^(KJBaseModel * _Nonnull kjModel) {
-                [dict setValue:kjModel forKey:kjModel.requestUrl];
+                [dict setValue:kjModel forKey:kjModel.groupResponseKey];
                 dispatch_group_leave(group);
             }];
         });

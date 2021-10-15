@@ -68,6 +68,10 @@ typedef void(^KJNetworkRequestHandle)(KJBaseModel *kjModel);
 /// 当前请求的URL，不包含域名，用于给外界做判断使用，只读属性
 @property (nonatomic, copy, readonly) NSString *kjRequestURL;
 
+/// 组合请求和关联请求结果集中该请求即如果对应的key
+- (KJNetworkManager * (^)(NSString *value))kjCustomGoupKey;
+
+
 
 /**  这里说明一下kjMoreAnalyzer的用法
  

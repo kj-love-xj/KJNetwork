@@ -228,7 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				97FAA37924BD9E2C00095721 /* Classes */,
-				97FAA38524BD9E2C00095721 /* Assets */,
 			);
 			name = KJNetwork;
 			path = ../../KJNetwork;
@@ -253,13 +252,6 @@
 				97FAA38324BD9E2C00095721 /* KJBaseModel.m */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		97FAA38524BD9E2C00095721 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

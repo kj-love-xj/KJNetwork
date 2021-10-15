@@ -19,4 +19,12 @@
     return self.code == 200;
 }
 
+
+- (NSString *)groupResponseKey {
+    if (!_groupResponseKey) {
+        return self.requestUrl;
+    }
+    return _groupResponseKey;
+}
+
 @end
