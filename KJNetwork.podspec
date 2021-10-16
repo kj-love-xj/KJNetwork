@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KJNetwork'
-  s.version          = '0.0.18'
+  s.version          = '0.0.19'
   s.summary          = 'KJNetwork'
 
 # This description is used to generate tags and improve search results.
@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 TODO: 基于AFN的网络请求
                        DESC
 
-  s.homepage         = 'https://github.com/kj-huang/KJNetwork'
+  s.homepage         = 'https://github.com/kj-love-xj/KJNetwork'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'jin' => 'kegem@foxmail.com' }
-  s.source           = { :git => 'https://github.com/kj-huang/KJNetwork.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/kj-love-xj/KJNetwork.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
