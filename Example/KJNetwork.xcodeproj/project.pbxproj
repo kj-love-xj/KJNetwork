@@ -21,6 +21,10 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
+		8435B3ED277AEF8C00724859 /* KJRequestItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8435B3EC277AEF8C00724859 /* KJRequestItem.m */; };
+		8435B3F0277B0DB100724859 /* KJRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8435B3EF277B0DB100724859 /* KJRequestManager.m */; };
+		844B05B6277C01E7004B9BF7 /* KJAFNetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B05B5277C01E7004B9BF7 /* KJAFNetworkAdapter.m */; };
+		844B05BB277C44FA004B9BF7 /* KJMJAnalyticAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 844B05BA277C44FA004B9BF7 /* KJMJAnalyticAdapter.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		970964E624BDA53400404E5C /* KJNetworkGroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 970964E524BDA53400404E5C /* KJNetworkGroupManager.m */; };
 		970E5A9424CAD78C00B42102 /* KJCustomBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 970E5A9324CAD78C00B42102 /* KJCustomBaseModel.m */; };
@@ -68,6 +72,16 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8435B3EB277AEF8C00724859 /* KJRequestItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJRequestItem.h; sourceTree = "<group>"; };
+		8435B3EC277AEF8C00724859 /* KJRequestItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJRequestItem.m; sourceTree = "<group>"; };
+		8435B3EE277B0DB100724859 /* KJRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJRequestManager.h; sourceTree = "<group>"; };
+		8435B3EF277B0DB100724859 /* KJRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJRequestManager.m; sourceTree = "<group>"; };
+		844B05B4277C01E7004B9BF7 /* KJAFNetworkAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJAFNetworkAdapter.h; sourceTree = "<group>"; };
+		844B05B5277C01E7004B9BF7 /* KJAFNetworkAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJAFNetworkAdapter.m; sourceTree = "<group>"; };
+		844B05B7277C0E3B004B9BF7 /* KJRequestAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJRequestAdapter.h; sourceTree = "<group>"; };
+		844B05B8277C4376004B9BF7 /* KJAnalyticAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJAnalyticAdapter.h; sourceTree = "<group>"; };
+		844B05B9277C44FA004B9BF7 /* KJMJAnalyticAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJMJAnalyticAdapter.h; sourceTree = "<group>"; };
+		844B05BA277C44FA004B9BF7 /* KJMJAnalyticAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJMJAnalyticAdapter.m; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		970964E424BDA53400404E5C /* KJNetworkGroupManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJNetworkGroupManager.h; sourceTree = "<group>"; };
 		970964E524BDA53400404E5C /* KJNetworkGroupManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KJNetworkGroupManager.m; sourceTree = "<group>"; };
@@ -238,6 +252,16 @@
 			children = (
 				97FAA38024BD9E2C00095721 /* KJNetwork.h */,
 				97FAA37F24BD9E2C00095721 /* KJNetworkStruct.h */,
+				8435B3EB277AEF8C00724859 /* KJRequestItem.h */,
+				8435B3EC277AEF8C00724859 /* KJRequestItem.m */,
+				844B05B7277C0E3B004B9BF7 /* KJRequestAdapter.h */,
+				844B05B8277C4376004B9BF7 /* KJAnalyticAdapter.h */,
+				844B05B4277C01E7004B9BF7 /* KJAFNetworkAdapter.h */,
+				844B05B5277C01E7004B9BF7 /* KJAFNetworkAdapter.m */,
+				844B05B9277C44FA004B9BF7 /* KJMJAnalyticAdapter.h */,
+				844B05BA277C44FA004B9BF7 /* KJMJAnalyticAdapter.m */,
+				8435B3EE277B0DB100724859 /* KJRequestManager.h */,
+				8435B3EF277B0DB100724859 /* KJRequestManager.m */,
 				97FAA37B24BD9E2C00095721 /* KJNetworkManager.h */,
 				97FAA38224BD9E2C00095721 /* KJNetworkManager.m */,
 				970964E424BDA53400404E5C /* KJNetworkGroupManager.h */,
@@ -428,14 +452,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* KJAppDelegate.m in Sources */,
+				844B05B6277C01E7004B9BF7 /* KJAFNetworkAdapter.m in Sources */,
 				970964E624BDA53400404E5C /* KJNetworkGroupManager.m in Sources */,
 				97FAA38924BD9E2C00095721 /* KJNetworkGlobalConfigs.m in Sources */,
+				844B05BB277C44FA004B9BF7 /* KJMJAnalyticAdapter.m in Sources */,
 				97FAA38B24BD9E2C00095721 /* KJBaseModel.m in Sources */,
 				97FAA38724BD9E2C00095721 /* KJUploadModel.m in Sources */,
 				97FAA38A24BD9E2C00095721 /* KJNetworkManager.m in Sources */,
+				8435B3F0277B0DB100724859 /* KJRequestManager.m in Sources */,
 				6003F5A7195388D20070C39A /* KJViewController.m in Sources */,
 				970E5A9424CAD78C00B42102 /* KJCustomBaseModel.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				8435B3ED277AEF8C00724859 /* KJRequestItem.m in Sources */,
 				97E8CB952563CC79006B7087 /* KJNetworkRelevanceManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -30,6 +30,10 @@ static KJNetworkGlobalConfigs *_configs = nil;
         _configs.kjRequestSerializer = JSON;
         _configs.kjObjectKey = @"data";
         _configs.kjBaseModelName = @"KJBaseModel";
+        _configs.timeout = 60.0;
+        _configs.kjAcceptableContentTypes = [[NSSet alloc]initWithObjects:@"application/json",@"text/json",@"text/javascript",@"text/plain",@"text/html", nil];
+        _configs.requestAdapter = @"KJAFNetworkAdapter";
+        _configs.analyticAdapter = @"KJMJAnalyticAdapter";
     });
     return _configs;
 }

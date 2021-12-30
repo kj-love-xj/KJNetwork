@@ -37,6 +37,18 @@ NS_ASSUME_NONNULL_BEGIN
 /// 设置解析的BaseModel，必须是KJBaseModel的子类， 默认KJBaseModel
 @property (nonatomic, copy) NSString *kjBaseModelName;
 
+/// 请求超时时长，默认为60s
+@property (nonatomic, assign) NSTimeInterval timeout;
+
+/// 设置可接受的内容类型，默认@"application/json",@"text/json",@"text/javascript",@"text/plain",@"text/html"
+@property (nonatomic, copy) NSSet <NSString *> *kjAcceptableContentTypes;
+
+/// 网络请求适配器，适配器必须实现协议KJRequestAdapter，默认KJAFNetworkAdapter
+@property (nonatomic, copy) NSString *requestAdapter;
+
+/// 数据解析适配器，适配器必须实现协议KJAnalyticAdapter，默认KJMJAnalyticAdapter
+@property (nonatomic, copy) NSString *analyticAdapter;
+
 @end
 
 NS_ASSUME_NONNULL_END

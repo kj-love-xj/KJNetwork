@@ -13,14 +13,14 @@ typedef NS_ENUM(NSInteger){
     GET,
     POST,
     PUT,
-    DELETE
+    DELETE,
+    HEAD,
+    PATCH
 } KJNetworkMethod;
 
 typedef NS_ENUM(NSInteger) {
     HTTP,
     JSON
 }KJNetworkSerializer;
-
-
 
 #endif /* KJNetworkStruct_h */

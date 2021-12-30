@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "KJBaseModel.h"
 #import "KJUploadModel.h"
-#import <UIKit/UIKit.h>
 #import "KJNetworkStruct.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^KJNetworkRequestHandle)(KJBaseModel *kjModel);
+
 
 @interface KJNetworkManager : NSObject
 
