@@ -11,8 +11,7 @@
 
 @implementation KJRequestItem
 
-
-
+// 初始化默认属性
 - (instancetype)init {
     if (self = [super init]) {
         self.method = GET;
@@ -101,6 +100,8 @@
         default: return @"GET"; break;
     }
 }
+
+//MARK: - 外界设置属性
 
 - (KJRequestStringValueHandle)kjDomain {
     return ^id (NSString *value) {
