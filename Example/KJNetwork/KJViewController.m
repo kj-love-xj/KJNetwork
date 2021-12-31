@@ -42,16 +42,8 @@
 //
 //    }];
     [[KJRequestManager initWithItems:@[
-        [KJRequestItem initURL:@"/home/getResearchReport"
-                        method:POST
-                     parameter:@{@"pageNo": @1, @"pageSize": @10}
-                analyticObject:nil
-                      groupKey:@"1"],
-        [KJRequestItem initURL:@"/home/getLearningVideo"
-                        method:POST
-                     parameter:nil
-                analyticObject:nil
-                      groupKey:@"2"],
+        KJRequestItem.kjUrl(@"/home/getResearchReport").kjMethod(POST).kjParameter(@{@"pageNo": @1, @"pageSize": @10}).kjGroupKey(@"1"),
+        KJRequestItem.kjUrl(@"/home/getLearningVideo").kjMethod(POST).kjGroupKey(@"2")
     ]] request:^(NSDictionary *  _Nonnull resultObject) {
         NSLog(@"%@", resultObject);
     }];

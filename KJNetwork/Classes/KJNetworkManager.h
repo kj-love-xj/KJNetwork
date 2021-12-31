@@ -16,21 +16,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^KJNetworkRequestHandle)(KJBaseModel *kjModel);
 
-
-@interface KJNetworkManager : NSObject
+__deprecated_msg("请使用KJRequestManager来处理网络请求")
+@interface KJNetworkManager : NSObject 
 
 /// 发送网络请求
 /// @param request 网络请求设置
 /// @param handle 请求结束回调
 + (instancetype)kjRequest:(nonnull void(^)(KJNetworkManager *manager))request
-                 complete: (nullable KJNetworkRequestHandle)handle;
+                 complete: (nullable KJNetworkRequestHandle)handle __deprecated_msg("请使用KJRequestManager来处理网络请求");
 
 /// 初始化网络请求对象，不主动发送请求，需要主动调用sendRequest才会发送请求
 /// @param request 设置
-+ (instancetype)kjRequest:(nonnull void(^)(KJNetworkManager *manager))request;
++ (instancetype)kjRequest:(nonnull void(^)(KJNetworkManager *manager))request __deprecated_msg("请使用KJRequestManager来处理网络请求");
 
 /// 发送请求
-- (void)sendRequest:(nullable KJNetworkRequestHandle)handle;
+- (void)sendRequest:(nullable KJNetworkRequestHandle)handle __deprecated_msg("请使用KJRequestManager来处理网络请求");
 
 
 /// HOST 如果不设置该属性，会从全局属性里获取

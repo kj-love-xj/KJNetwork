@@ -25,52 +25,17 @@ typedef KJRequestItem * _Nonnull (^KJRequestDictionaryValueHandle) (NSDictionary
 
 @interface KJRequestItem : NSObject
 
-+ (instancetype) initURL:(NSString *)url;
-
-+ (instancetype) initURL:(NSString *)url
-                  method:(KJNetworkMethod)method;
-
-+ (instancetype) initURL:(NSString *)url
-                  method:(KJNetworkMethod)method
-          analyticObject:(NSString * _Nullable)analyticObject;
-
-+ (instancetype) initURL:(NSString *)url
-                  method:(KJNetworkMethod)method
- multipleAnalyticObjects:(NSDictionary * _Nullable)multipleAnalyticObjects;
-
-+ (instancetype) initURL:(NSString *)url
-                  method:(KJNetworkMethod)method
-               parameter:(NSDictionary * _Nullable)parameter
-          analyticObject:(NSString * _Nullable)analyticObject;
-
-+ (instancetype) initURL:(NSString *)url
-                  method:(KJNetworkMethod)method
-               parameter:(NSDictionary * _Nullable)parameter
-          analyticObject:(NSString * _Nullable)analyticObject
-                groupKey:(NSString * _Nullable)groupKey;
-
-+ (instancetype) initURL:(NSString *)url
-                  method:(KJNetworkMethod)method
-               parameter:(NSDictionary * _Nullable)parameter
- multipleAnalyticObjects:(NSDictionary * _Nullable)multipleAnalyticObjects;
-
-+ (instancetype) initURL:(NSString *)url
-                  method:(KJNetworkMethod)method
-               parameter:(NSDictionary * _Nullable)parameter
- multipleAnalyticObjects:(NSDictionary * _Nullable)multipleAnalyticObjects
-                groupKey:(NSString * _Nullable)groupKey;
-
-
+/// 请求的URL，不包含域名
+@property (nonatomic, copy) NSString *url;
+- (KJRequestStringValueHandle)kjUrl;
+- (KJRequestItem *)kjUrl:(NSString *)url;
++ (KJRequestStringValueHandle)kjUrl;               // 可以使用其进行KJRequestItem对象初始化
++ (KJRequestItem *)kjUrl:(NSString *)url;          // 可以使用其进行KJRequestItem对象初始化
 
 /// 域名，默认KJNetworkGlobalConfigs中的kjHost，若有改变，可以设置该值
 @property (nonatomic, copy) NSString *domain;
 - (KJRequestStringValueHandle)kjDomain;     // 方便OC
 - (KJRequestItem *)kjDomain:(NSString *)domain;          // 方便Swift
-
-/// 请求的URL，不包含域名
-@property (nonatomic, copy) NSString *url;
-- (KJRequestStringValueHandle)kjUrl;
-- (KJRequestItem *)kjUrl:(NSString *)url;
 
 /// 参数，会合并KJNetworkGlobalConfigs中的kjParams
 @property (nonatomic, strong) NSMutableDictionary *parameter;

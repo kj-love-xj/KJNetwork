@@ -13,13 +13,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^KJNetworkGroupRequestHandle)(NSDictionary<NSString *, KJBaseModel *> * kjResult);
 
+__deprecated_msg("请使用KJRequestManager来处理网络请求")
 @interface KJNetworkGroupManager : NSObject
 
 /// 多个网络请求同时发送
 /// @param request 网络请求组
 /// @param complete 请求结果集
 + (void)kjRequest:(NSArray<KJNetworkManager *> *(^)(void))request
-         complete:(nullable KJNetworkGroupRequestHandle)complete;
+         complete:(nullable KJNetworkGroupRequestHandle)complete __deprecated_msg("请使用KJRequestManager来处理网络请求");
 
 @end
 

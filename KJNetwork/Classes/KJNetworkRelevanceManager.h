@@ -15,6 +15,7 @@ typedef NSDictionary * _Nullable (^KJNetworkRelevanceParameterHandle)(NSDictiona
 
 typedef void(^KJNetworkRelevanceRequestHandle)(NSDictionary<NSString *, KJBaseModel *> *kjResult, NSArray<KJBaseModel *> *kjResultArray);
 
+__deprecated_msg("请使用KJRequestManager来处理网络请求")
 @interface KJNetworkRelevanceManager : NSObject
 
 /// 多个网络请求关联发送
@@ -23,7 +24,7 @@ typedef void(^KJNetworkRelevanceRequestHandle)(NSDictionary<NSString *, KJBaseMo
 /// @param complete 请求结果集
 + (void)kjRequest:( NSArray<KJNetworkManager *> *(^)(void))request
         parameter:(KJNetworkRelevanceParameterHandle)parameter
-         complete:(_Nullable KJNetworkRelevanceRequestHandle)complete;
+         complete:(_Nullable KJNetworkRelevanceRequestHandle)complete __deprecated_msg("请使用KJRequestManager来处理网络请求");
 
 @end
 

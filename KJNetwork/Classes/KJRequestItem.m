@@ -11,84 +11,7 @@
 
 @implementation KJRequestItem
 
-+ (instancetype) initURL:(NSString *)url {
-    return [self initURL:url method:GET];
-}
 
-+ (instancetype) initURL:(NSString *)url
-                  method:(KJNetworkMethod)method {
-    return [self initURL:url method:method analyticObject:nil];
-}
-
-+ (instancetype) initURL:(NSString *)url
-                  method:(KJNetworkMethod)method
-          analyticObject:(NSString * _Nullable)analyticObject {
-    return [self initURL:url
-                  method:method
-               parameter:nil
-          analyticObject:analyticObject];
-}
-
-+ (instancetype) initURL:(NSString *)url
-                  method:(KJNetworkMethod)method
- multipleAnalyticObjects:(NSDictionary * _Nullable)multipleAnalyticObjects {
-    return [self initURL:url
-                  method:method
-               parameter:nil
- multipleAnalyticObjects:multipleAnalyticObjects];
-}
-
-+ (instancetype) initURL:(NSString *)url
-                  method:(KJNetworkMethod)method
-               parameter:(NSDictionary * _Nullable)parameter
-          analyticObject:(NSString * _Nullable)analyticObject {
-    return [self initURL:url
-                  method:method
-               parameter:parameter
-          analyticObject: analyticObject
-                groupKey:nil];
-}
-
-+ (instancetype) initURL:(NSString *)url
-                  method:(KJNetworkMethod)method
-               parameter:(NSDictionary * _Nullable)parameter
- multipleAnalyticObjects:(NSDictionary * _Nullable)multipleAnalyticObjects {
-    return [self initURL:url
-                  method:method
-               parameter:parameter
- multipleAnalyticObjects:multipleAnalyticObjects
-                groupKey:url];
-}
-
-+ (instancetype) initURL:(NSString *)url
-                  method:(KJNetworkMethod)method
-               parameter:(NSDictionary * _Nullable)parameter
-          analyticObject:(NSString * _Nullable)analyticObject
-                groupKey:(NSString * _Nullable)groupKey {
-    return [self initURL:url
-                  method:method
-               parameter:parameter
- multipleAnalyticObjects:analyticObject != nil ? @{KJNetworkOriginObjectKey:analyticObject} : @{}
-                groupKey:groupKey];
-}
-
-+ (instancetype) initURL:(NSString *)url
-                  method:(KJNetworkMethod)method
-               parameter:(NSDictionary * _Nullable)parameter
- multipleAnalyticObjects:(NSDictionary * _Nullable)multipleAnalyticObjects
-                groupKey:(NSString * _Nullable)groupKey {
-    KJRequestItem *item = [KJRequestItem new];
-    item.url = url;
-    item.method = method;
-    item.groupKey = groupKey;
-    if (parameter != nil && parameter.count > 0) {
-        [item.parameter addEntriesFromDictionary:parameter];
-    }
-    if (multipleAnalyticObjects != nil && multipleAnalyticObjects.count > 0) {
-        [item.multipleAnalyticObjects addEntriesFromDictionary:multipleAnalyticObjects];
-    }
-    return item;
-}
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -199,6 +122,18 @@
 - (KJRequestItem *)kjUrl:(NSString *)url {
     self.url = url;
     return self;
+}
+
++ (KJRequestStringValueHandle)kjUrl {
+    return ^id (NSString * value) {
+        return [self kjUrl:value];
+    };
+}
+
++ (KJRequestItem *)kjUrl:(NSString *)url {
+    KJRequestItem *item = [[KJRequestItem alloc] init];
+    item.url = url;
+    return item;
 }
 
 - (KJRequestDictionaryValueHandle)kjParameter {
