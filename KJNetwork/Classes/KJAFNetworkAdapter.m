@@ -57,10 +57,7 @@
         // 需要删除前缀'/'
         url = [url substringFromIndex:1];
     }
-    // 参数
-    [item.parameter addEntriesFromDictionary:[KJNetworkGlobalConfigs defaultConfigs].kjParams];
-    // header
-    [item.header addEntriesFromDictionary:[KJNetworkGlobalConfigs defaultConfigs].kjHeader];
+
     // 开始请求
     if (item.fileArr.count > 0) {
         // 上传文件
@@ -78,10 +75,17 @@
 - (void)send:(NSString *)url
         item:(KJRequestItem *)item
         http:(AFHTTPSessionManager *)http {
+    // 处理参数
+    NSMutableDictionary *parameter = [NSMutableDictionary dictionaryWithDictionary:[KJNetworkGlobalConfigs defaultConfigs].kjParams];
+    [parameter addEntriesFromDictionary:item.parameter];
+    // 处理Header
+    NSMutableDictionary *header = [NSMutableDictionary dictionaryWithDictionary:[KJNetworkGlobalConfigs defaultConfigs].kjHeader];
+    [header addEntriesFromDictionary:item.header];
+    
     [[http dataTaskWithHTTPMethod:[item requestMethod]
                            URLString:url
-                          parameters:item.parameter
-                             headers:item.header
+                          parameters:parameter
+                             headers:header
                       uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
             // 上传进度
             if (item.uploadHandle != nil) {
@@ -189,7 +193,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
 
 - (NSString *)requestDescription:(NSURLSessionDataTask *)task item: (KJRequestItem *)item {
     NSURLRequest *request = task.currentRequest;
-    return [NSString stringWithFormat:@"- Domain:%@\n- Url:%@\n- Path:%@\n- Method:%@\n- Params:\n%@\n- Header:\n%@", item.domain, item.url, request.URL, request.HTTPMethod, item.parameter.mj_JSONString, request.allHTTPHeaderFields.mj_JSONString];
+    return [NSString stringWithFormat:@"- Domain:%@\n- Url:%@\n- Path:%@\n- Method:%@\n- Params:\n[item]:%@\n[global]:%@\n- Header:\n[all]:%@\n[item]:%@\n[global]:%@", item.domain, item.url, request.URL, request.HTTPMethod, item.parameter.mj_JSONString, [KJNetworkGlobalConfigs defaultConfigs].kjParams.mj_JSONString, request.allHTTPHeaderFields.mj_JSONString, item.header.mj_JSONString, [KJNetworkGlobalConfigs defaultConfigs].kjHeader.mj_JSONString];
     
 }
 

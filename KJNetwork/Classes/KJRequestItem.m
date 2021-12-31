@@ -11,6 +11,32 @@
 
 @implementation KJRequestItem
 
++ (instancetype) initURL:(NSString *)url {
+    return [self initURL:url method:GET];
+}
+
++ (instancetype) initURL:(NSString *)url
+                  method:(KJNetworkMethod)method {
+    return [self initURL:url method:method analyticObject:nil];
+}
+
++ (instancetype) initURL:(NSString *)url
+                  method:(KJNetworkMethod)method
+          analyticObject:(NSString * _Nullable)analyticObject {
+    return [self initURL:url
+                  method:method
+               parameter:nil
+          analyticObject:analyticObject];
+}
+
++ (instancetype) initURL:(NSString *)url
+                  method:(KJNetworkMethod)method
+ multipleAnalyticObjects:(NSDictionary * _Nullable)multipleAnalyticObjects {
+    return [self initURL:url
+                  method:method
+               parameter:nil
+ multipleAnalyticObjects:multipleAnalyticObjects];
+}
 
 + (instancetype) initURL:(NSString *)url
                   method:(KJNetworkMethod)method
@@ -19,7 +45,8 @@
     return [self initURL:url
                   method:method
                parameter:parameter
- multipleAnalyticObjects: analyticObject != nil ? @{KJNetworkOriginObjectKey:analyticObject} : @{}];
+          analyticObject: analyticObject
+                groupKey:nil];
 }
 
 + (instancetype) initURL:(NSString *)url
@@ -151,5 +178,223 @@
         default: return @"GET"; break;
     }
 }
+
+- (KJRequestStringValueHandle)kjDomain {
+    return ^id (NSString *value) {
+        return [self kjDomain:value];
+    };
+}
+
+- (KJRequestItem *)kjDomain:(NSString *)domain {
+    self.domain = domain;
+    return self;
+}
+
+- (KJRequestStringValueHandle)kjUrl {
+    return ^id (NSString * value) {
+        return [self kjUrl:value];
+    };
+}
+
+- (KJRequestItem *)kjUrl:(NSString *)url {
+    self.url = url;
+    return self;
+}
+
+- (KJRequestDictionaryValueHandle)kjParameter {
+    return ^id (NSDictionary *value) {
+        return [self kjParameter: value];
+    };
+}
+
+- (KJRequestItem *)kjParameter:(NSDictionary *)parameter {
+    if (parameter.count > 0) {
+        [self.parameter addEntriesFromDictionary:parameter];
+    }
+    return self;
+}
+
+- (KJRequestDictionaryValueHandle)kjHeader {
+    return ^id (NSDictionary *value) {
+        return [self kjHeader:value];
+    };
+}
+
+- (KJRequestItem *)kjHeader:(NSDictionary *)header {
+    if (header.count > 0) {
+        [self.header addEntriesFromDictionary:header];
+    }
+    return self;
+}
+
+- (KJRequestItem * (^)(KJNetworkMethod value))kjMethod {
+    return ^id (KJNetworkMethod value) {
+        return [self kjMethod:value];
+    };
+}
+
+- (KJRequestItem *)kjMethod:(KJNetworkMethod)method {
+    self.method = method;
+    return self;
+}
+
+- (KJRequestStringValueHandle)kjDataKey {
+    return ^id (NSString *value) {
+        return [self kjDataKey:value];
+    };
+}
+
+- (KJRequestItem *)kjDataKey:(NSString *)dataKey {
+    self.dataKey = dataKey;
+    return self;
+}
+
+- (KJRequestDictionaryValueHandle)kjMultipleAnalyticObjects {
+    return ^id (NSDictionary *value) {
+        return [self kjMultipleAnalyticObjects:value];
+    };
+}
+
+- (KJRequestItem *)kjMultipleAnalyticObjects:(NSDictionary *)multipleAnalyticObjects {
+    if (multipleAnalyticObjects.count > 0) {
+        [self.multipleAnalyticObjects addEntriesFromDictionary:multipleAnalyticObjects];
+    }
+    return self;
+}
+
+- (KJRequestStringValueHandle)kjAnalyticObject {
+    return ^id (NSString *value) {
+        return [self kjAnalyticObject:value];
+    };
+}
+
+- (KJRequestItem *)kjAnalyticObject:(NSString *)analyticObject {
+    self.analyticObject = analyticObject;
+    return self;
+}
+
+- (KJRequestStringValueHandle)kjGroupKey {
+    return ^id (NSString *value) {
+        return [self kjGroupKey:value];
+    };
+}
+
+- (KJRequestItem *)kjGroupKey:(NSString *)groupKey {
+    self.groupKey = groupKey;
+    return self;
+}
+
+- (KJRequestItem * (^)(KJRequestItemInterceptHandle value))kjInterceptHandle {
+    return ^id (KJRequestItemInterceptHandle value) {
+        return [self kjInterceptHandle:value];
+    };
+}
+
+- (KJRequestItem *)kjInterceptHandle:(KJRequestItemInterceptHandle)interceptHandle {
+    self.interceptHandle = interceptHandle;
+    return self;
+}
+
+- (KJRequestStringValueHandle)kjBaseModelName {
+    return ^id (NSString *value) {
+        return [self kjBaseModelName:value];
+    };
+}
+
+- (KJRequestItem *)kjBaseModelName:(NSString *)baseModelName {
+    self.baseModelName = baseModelName;
+    return self;
+}
+
+- (KJRequestItem * (^)(NSArray<KJUploadModel *> *value))kjFileArr {
+    return ^id (NSArray<KJUploadModel *> *value) {
+        return [self kjFileArr:value];
+    };
+}
+
+- (KJRequestItem *)kjFileArr:(NSArray <KJUploadModel *> *)fileArr {
+    if (fileArr.count > 0) {
+        [self.fileArr addObjectsFromArray:fileArr];
+    }
+    return self;
+}
+
+- (KJRequestItem * (^)(KJNetworkSerializer value))kjRequestSerializer {
+    return ^id (KJNetworkSerializer value) {
+        return [self kjRequestSerializer:value];
+    };
+}
+
+- (KJRequestItem *)kjRequestSerializer:(KJNetworkSerializer)requestSerializer {
+    self.requestSerializer = requestSerializer;
+    return self;
+}
+
+- (KJRequestItem * (^)(KJNetworkSerializer value))kjResponseSerializer {
+    return ^id (KJNetworkSerializer value) {
+        return [self kjResponseSerializer: value];
+    };
+}
+
+- (KJRequestItem *)kjResponseSerializer:(KJNetworkSerializer)responseSerializer {
+    self.responseSerializer = responseSerializer;
+    return self;
+}
+
+- (KJRequestItem * (^)(NSSet <NSString *> *value))kjAcceptableContentTypes {
+    return ^id (NSSet <NSString *> *value) {
+        return [self kjAcceptableContentTypes: value];
+    };
+}
+
+- (KJRequestItem *)kjAcceptableContentTypes:(NSSet <NSString *> *)acceptableContentTypes {
+    self.acceptableContentTypes = acceptableContentTypes;
+    return self;
+}
+
+- (KJRequestStringValueHandle)kjRequestAdapter {
+    return ^id (NSString *value) {
+        return [self kjRequestAdapter: value];
+    };
+}
+
+- (KJRequestItem *)kjRequestAdapter:(NSString *)requestAdapter {
+    self.requestAdapter = requestAdapter;
+    return self;
+}
+
+- (KJRequestStringValueHandle)kjAnalyticAdapter {
+    return ^id (NSString *value) {
+        return [self kjAnalyticAdapter: value];
+    };
+}
+
+- (KJRequestItem *)kjAnalyticAdapter:(NSString *)analyticAdapter {
+    self.analyticAdapter = analyticAdapter;
+    return self;
+}
+
+- (KJRequestItem * (^)(KJRequestProgressHandle value))kjUploadHandle {
+    return ^id (KJRequestProgressHandle value) {
+        return [self kjUploadHandle: value];
+    };
+}
+
+- (KJRequestItem *)kjUploadHandle:(KJRequestProgressHandle)uploadHandle {
+    self.uploadHandle = uploadHandle;
+    return self;
+}
+
+- (KJRequestItem * (^)(KJRequestProgressHandle value))kjDownloadHandle {
+    return ^id (KJRequestProgressHandle value) {
+        return [self kjDownloadHandle: value];
+    };
+}
+
+- (KJRequestItem *)kjDownloadHandle:(KJRequestProgressHandle)downloadHandle {
+    self.downloadHandle = downloadHandle;
+    return self;
+}
+
 
 @end

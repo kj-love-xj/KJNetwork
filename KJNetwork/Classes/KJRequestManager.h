@@ -25,11 +25,11 @@ typedef void(^KJRequestHandle)(id resultObject);
 + (instancetype)initWithItems:(NSArray <KJRequestItem *> *)items;
 
 /// 添加请求
-- (void)add:(KJRequestItem *)item;
+- (KJRequestManager *)add:(KJRequestItem *)item;
 
 /// 添加请求
-- (void)add:(KJRequestItem *)item
-  intercept:(KJRequestItemInterceptHandle _Nullable)interceptHandle;
+- (KJRequestManager *)add:(KJRequestItem *)item
+                intercept:(KJRequestItemInterceptHandle _Nullable)interceptHandle;
 
 /// 开始网络请求
 - (void)request:(KJRequestHandle _Nullable)complete;

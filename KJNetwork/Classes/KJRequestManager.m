@@ -41,19 +41,20 @@
 }
 
 /// 添加请求
-- (void)add:(KJRequestItem *)item {
+- (KJRequestManager *)add:(KJRequestItem *)item {
     if (item.interceptHandle != nil) {
         [self.assArr addObject:item];
     } else {
         [self.groupArr addObject:item];
     }
+    return self;
 }
 
 /// 添加请求
-- (void)add:(KJRequestItem *)item
+- (KJRequestManager *)add:(KJRequestItem *)item
   intercept:(KJRequestItemInterceptHandle _Nullable)interceptHandle{
     item.interceptHandle = interceptHandle;
-    [self add:item];
+    return [self add:item];
 }
 
 /// 开始网络请求
