@@ -30,6 +30,7 @@
     } else {
         // 请求成功的处理
         KJBaseModel *baseModel = [NSClassFromString(item.baseModelName) mj_objectWithKeyValues:responseObject];
+        baseModel.responseObject = responseObject;
         baseModel.data = @[];
         // data数据
         id responseData = responseObject[item.dataKey];
@@ -63,7 +64,7 @@
             }
             // 处理解析完后的数据
             if (analyticResult.count > 0) {
-                if (analyticResult.count == 0) {
+                if (analyticResult.count == 1) {
                     id object = analyticResult.allValues.firstObject;
                     if ([object isKindOfClass:NSArray.class]) {
                         baseModel.data = (NSArray *)object;

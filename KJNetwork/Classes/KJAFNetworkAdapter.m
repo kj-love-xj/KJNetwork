@@ -170,7 +170,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         self.finish(item, obj, nil);
     }
 #ifdef DEBUG
-    NSLog(@"\n\n✅✅✅✅✅--Start\n%@\n-🌹 Response:\n%@\n✅✅✅✅✅--End\n", [self requestDescription:task item:item], [obj mj_JSONString]);
+    printf("\n\n✅✅✅✅✅--Start\n%s\n-🌹 Response:\n%s\n✅✅✅✅✅--End\n", [self requestDescription:task item:item].UTF8String, ((NSDictionary *)obj).mj_JSONString.UTF8String);
 #endif
     [task cancel];
 }
@@ -186,7 +186,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         self.finish(item, nil, err);
     }
 #ifdef DEBUG
-    NSLog(@"\n\n❌❌❌❌❌--Start\n%@\n-🌹 Error:\ncode=%ld,message=%@\n❌❌❌❌❌--End\n", [self requestDescription:task item:item], (long)err.code, err.localizedDescription);
+    printf("\n\n❌❌❌❌❌--Start\n%s\n-🌹 Error:\ncode=%ld,message=%s\n❌❌❌❌❌--End\n", [self requestDescription:task item:item].UTF8String, (long)err.code, err.localizedDescription.UTF8String);
 #endif
     [task cancel];
 }

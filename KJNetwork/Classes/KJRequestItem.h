@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class KJRequestItem;
 @class KJBaseModel;
 
-static NSString * const KJNetworkOriginObjectKey = @"com.[hkj.love.cxj].origin.obj.key";
+static NSString * const KJNetworkOriginObjectKey = @"com_[hkj_love_cxj]_origin_obj_key";
 
 typedef void (^KJRequestItemInterceptHandle) (KJRequestItem *item, NSDictionary <NSString *, KJBaseModel *> *result);
 typedef void (^KJRequestProgressHandle) (KJRequestItem *item, NSProgress * _Nonnull progress);
