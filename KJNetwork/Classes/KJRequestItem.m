@@ -92,7 +92,7 @@
 /// 根据method获取对应的NSString
 - (NSString *)requestMethod {
     switch (self.method) {
-        case POST: return @"GET"; break;
+        case POST: return @"POST"; break;
         case PUT: return @"PUT"; break;
         case DELETE: return @"DELETE"; break;
         case HEAD: return @"HEAD"; break;
