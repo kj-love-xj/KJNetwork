@@ -19,20 +19,17 @@ typedef void(^KJRequestHandle)(id resultObject);
 @interface KJRequestManager : NSObject
 
 /// 初始化
-+ (instancetype)initWithItem:(KJRequestItem *)item;
++ (instancetype)initWithItem:(KJRequestItem *)item; // 方便OC
++ (KJRequestManager * (^)(KJRequestItem *value))item; //方便Swift
 
-/// 初始化
-+ (instancetype)initWithItems:(NSArray <KJRequestItem *> *)items;
 
 /// 添加请求
 - (KJRequestManager *)add:(KJRequestItem *)item;
-
-/// 添加请求
-- (KJRequestManager *)add:(KJRequestItem *)item
-                intercept:(KJRequestItemInterceptHandle _Nullable)interceptHandle;
+- (KJRequestManager * (^)(KJRequestItem *value))item;
 
 /// 开始网络请求
 - (void)request:(KJRequestHandle _Nullable)complete;
+- (void (^)(KJRequestHandle _Nullable value))request;
 
 @end
 

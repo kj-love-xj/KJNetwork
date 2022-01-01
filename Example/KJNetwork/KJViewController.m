@@ -41,13 +41,21 @@
 //    } complete:^(NSDictionary<NSString *,KJBaseModel *> * _Nonnull kjResult) {
 //
 //    }];
-    [[KJRequestManager initWithItems:@[
-        KJRequestItem.kjUrl(@"/home/getResearchReport").kjMethod(POST).kjParameter(@{@"pageNo": @1, @"pageSize": @10}).kjGroupKey(@"1"),
-        KJRequestItem.kjUrl(@"/home/getLearningVideo").kjMethod(POST).kjGroupKey(@"2")
-    ]] request:^(NSDictionary *  _Nonnull resultObject) {
-        NSLog(@"%@", resultObject);
-    }];
+    KJRequestManager
+        .item(KJRequestItem.kjUrl(@""))
+        .item(KJRequestItem.kjUrl(@""))
+        .request(^(id resultObject){
+            
+        });
     
+    
+//    [[KJRequestManager initWithItems:@[
+//        KJRequestItem.kjUrl(@"/home/getResearchReport").kjMethod(POST).kjParameter(@{@"pageNo": @1, @"pageSize": @10}).kjGroupKey(@"1"),
+//        KJRequestItem.kjUrl(@"/home/getLearningVideo").kjMethod(POST).kjGroupKey(@"2")
+//    ]] request:^(NSDictionary *  _Nonnull resultObject) {
+//        NSLog(@"%@", resultObject);
+//    }];
+//    
 }
 
 - (void)didReceiveMemoryWarning

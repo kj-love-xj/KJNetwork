@@ -28,16 +28,15 @@
 
 /// 初始化
 + (instancetype)initWithItem:(KJRequestItem *)item {
-    return [self initWithItems: item != nil ? @[item] : @[] ];
+    KJRequestManager *manager = [[KJRequestManager alloc] init];
+    [manager add:item];
+    return manager;
 }
 
-/// 初始化
-+ (instancetype)initWithItems:(NSArray <KJRequestItem *> *)items {
-    KJRequestManager *manager = [KJRequestManager new];
-    for (KJRequestItem *item in items) {
-        [manager add: item];
-    }
-    return manager;
++ (KJRequestManager * (^)(KJRequestItem *value))item {
+    return ^id (KJRequestItem *value) {
+        return [self initWithItem:value];
+    };
 }
 
 /// 添加请求
@@ -50,11 +49,10 @@
     return self;
 }
 
-/// 添加请求
-- (KJRequestManager *)add:(KJRequestItem *)item
-  intercept:(KJRequestItemInterceptHandle _Nullable)interceptHandle{
-    item.interceptHandle = interceptHandle;
-    return [self add:item];
+- (KJRequestManager * (^)(KJRequestItem *value))item {
+    return ^id (KJRequestItem *value) {
+        return [self add:value];
+    };
 }
 
 /// 开始网络请求
@@ -71,6 +69,12 @@
             }
         }
     }];
+}
+
+- (void (^)(KJRequestHandle _Nullable value))request {
+    return ^void (KJRequestHandle _Nullable value) {
+        [self request:value];
+    };
 }
 
 /// 处理请求组
