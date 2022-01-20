@@ -193,7 +193,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
 
 - (NSString *)requestDescription:(NSURLSessionDataTask *)task item: (KJRequestItem *)item {
     NSURLRequest *request = task.currentRequest;
-    return [NSString stringWithFormat:@"-🌹 Domain:%@\n-🌹 Url:%@\n-🌹 Path:%@\n-🌹 Method:%@\n-🌹 Params:\n[item]:%@\n[global]:%@\n-🌹 Header:\n[all]:%@\n[item]:%@\n[global]:%@", item.domain, item.url, request.URL, request.HTTPMethod, item.parameter.mj_JSONString, [KJNetworkGlobalConfigs defaultConfigs].kjParams.mj_JSONString, request.allHTTPHeaderFields.mj_JSONString, item.header.mj_JSONString, [KJNetworkGlobalConfigs defaultConfigs].kjHeader.mj_JSONString];
+    return [NSString stringWithFormat:@"-🌹 Domain:%@\n-🌹 Url:%@\n-🌹 Path:%@\n-🌹 Method:%@\n-🌹 Params:\n🚀🚀[item]:%@\n🚀🚀[global]:%@\n-🌹 Header:\n🚀🚀[all]:%@\n🚀🚀[item]:%@\n🚀🚀[global]:%@", item.domain, item.url, request.URL, request.HTTPMethod, item.parameter.mj_JSONString, [KJNetworkGlobalConfigs defaultConfigs].kjParams.mj_JSONString, request.allHTTPHeaderFields.mj_JSONString, item.header.mj_JSONString, [KJNetworkGlobalConfigs defaultConfigs].kjHeader.mj_JSONString];
     
 }
 

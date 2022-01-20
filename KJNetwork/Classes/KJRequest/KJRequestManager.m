@@ -27,20 +27,19 @@
 @implementation KJRequestManager
 
 /// 初始化
-+ (instancetype)initWithItem:(KJRequestItem *)item {
++ (KJRequestManager *)item:(KJRequestItem *)item {
     KJRequestManager *manager = [[KJRequestManager alloc] init];
-    [manager add:item];
+    [manager item:item];
     return manager;
 }
 
 + (KJRequestManager * (^)(KJRequestItem *value))item {
     return ^id (KJRequestItem *value) {
-        return [self initWithItem:value];
+        return [self item:value];
     };
 }
 
-/// 添加请求
-- (KJRequestManager *)add:(KJRequestItem *)item {
+- (KJRequestManager *)item:(KJRequestItem *)item {
     if (item.interceptHandle != nil) {
         [self.assArr addObject:item];
     } else {
@@ -51,7 +50,7 @@
 
 - (KJRequestManager * (^)(KJRequestItem *value))item {
     return ^id (KJRequestItem *value) {
-        return [self add:value];
+        return [self item:value];
     };
 }
 
