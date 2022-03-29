@@ -78,7 +78,7 @@
         } else {
             if (responseData != nil) {
                 // 没办法解析的数据，直接放入data中
-                if (isArray) {
+                if ([responseData isKindOfClass:NSArray.class]) {
                     baseModel.data = responseData;
                 } else {
                     baseModel.data = @[responseData];
