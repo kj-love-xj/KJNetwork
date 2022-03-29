@@ -94,7 +94,7 @@ KJRequestManager
               .kjDomain(FinancialBaseUrl)
               .kjMethod(POST)
               .kjParameter(@{@"pageNo":@(self.page),@"pageSize":@(PageTotalCount)})
-              .kjGroupKey(@"writingAuthor")
+              // .kjGroupKey(@"writingAuthor") // -- 单个网络请求不需要社会该属性
               .kjMultipleAnalyticObjects(@{@"data":@"DKRecommendAuth"})) //
         .request(^(NSDictionary *kjResult){
             KJBaseModel *kjModel = (KJBaseModel*)kjResult; //文章列表
